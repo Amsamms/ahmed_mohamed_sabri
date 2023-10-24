@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Graduation</title>
+    <style>
+        @keyframes slideshow {
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .left {
+            width: 30%;
+            padding: 2em;
+        }
+
+        .right {
+            width: 70%;
+            padding: 2em;
+            position: relative;
+        }
+
+        .right:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url("my_photo_1.jpg") no-repeat center center / cover;
+            animation: slideshow 8s infinite;
+            z-index: -1;
+        }
+
+        .right:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url("my_photo_2.jpg") no-repeat center center / cover;
+            animation: slideshow 8s infinite;
+            animation-delay: 4s;
+            z-index: -1;
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 0;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        .typing h2 {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40, end);
+        }
+
+        .typing p {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 8s steps(80, end);
+            animation-delay: 4s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <h2>My Documents</h2>
+        <a href="Transcript English.pdf" target="_blank">Transcript English</a>
+        <a href="Combustion School 2020 Certificate-Ahmed Sabri.png" target="_blank">Combustion School 2020 Certificate</a>
+        <a href="Aspentech certificate for Ahmed Sabri.pdf" target="_blank">Aspentech Certificate</a>
+        <a href="Ahmed_sabri_English_garduation_Certificate_Back&Front.pdf" target="_blank">Graduation Certificate</a>
+    </div>
+    <div class="right typing">
+        <h2>About Me</h2>
+        <p>Here is where you can write about yourself. This text will appear as if it's being typed live.</p>
+    </div>
+</body>
+
+</html>
