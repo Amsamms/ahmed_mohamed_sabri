@@ -34,7 +34,7 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             background: var(--background-gradient);
@@ -50,24 +50,27 @@
         .left {
             width: 30%;
             padding: 2em;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.25);
             box-shadow: 2px 0px 10px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .left h2 {
-            margin: 0 0 1em 0;
+            margin-top: 0;
+            margin-bottom: 1em;
             font-weight: 600;
             font-size: 1.5em;
         }
 
-        .docs-list {
+        .docs-list,
+        .portfolio-items {
             margin-bottom: 2em;
         }
 
-        .docs-list a {
+        .docs-list a,
+        .portfolio-items a {
             display: block;
             color: var(--text-color);
             text-decoration: none;
@@ -76,37 +79,15 @@
             transition: color 0.3s;
         }
 
-        .docs-list a:hover {
+        .docs-list a:hover,
+        .portfolio-items a:hover {
             color: #ecf0f1;
-        }
-
-        .portfolio {
-            margin-top: 2em;
         }
 
         .portfolio h2 {
             margin: 0 0 1em 0;
             font-weight: 600;
             font-size: 1.5em;
-        }
-
-        .portfolio-items {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .portfolio-items a {
-            margin-bottom: 0.5em;
-            padding: 0.5em;
-            background: rgba(255,255,255,0.1);
-            text-decoration: none;
-            color: var(--text-color);
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .portfolio-items a:hover {
-            background: rgba(255,255,255,0.2);
         }
 
         .right {
@@ -143,23 +124,25 @@
             z-index: -1;
         }
 
-        .about {
+        .about-section {
             width: 100%;
-            max-width: 600px;
-            background: rgba(0,0,0,0.3);
+            max-width: 700px;
+            background: rgba(0,0,0,0.4);
             padding: 2em;
             border-radius: 8px;
             backdrop-filter: blur(4px);
+            margin-bottom: 2em;
         }
 
-        .about h2 {
+        .about-section h2 {
             margin-top: 0;
             font-weight: 600;
-            position: relative;
-            display: inline-block;
         }
 
-        /* Typing Effect */
+        .about-section p {
+            line-height: 1.6em;
+        }
+
         .typing h2,
         .typing p {
             white-space: nowrap;
@@ -178,6 +161,32 @@
             animation-delay: 3s;
         }
 
+        .experience {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(0,0,0,0.4);
+            padding: 2em;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+        }
+
+        .experience h2 {
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+
+        .experience ul {
+            list-style-type: square;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8em;
+        }
+
+        .experience ul li {
+            margin-left: 1.5em;
+        }
+
         @media screen and (max-width: 900px) {
             .container {
                 flex-direction: column;
@@ -194,29 +203,54 @@
 <body>
     <div class="container">
         <div class="left">
-            <div>
-                <h2>My Documents</h2>
-                <div class="docs-list">
-                    <a href="Transcript English.pdf" target="_blank">Transcript English</a>
-                    <a href="Combustion School 2020 Certificate-Ahmed Sabri.png" target="_blank">Combustion School 2020 Certificate</a>
-                    <a href="Aspentech certificate for Ahmed Sabri.pdf" target="_blank">Aspentech Certificate</a>
-                    <a href="Ahmed_sabri_English_garduation_Certificate_Back&Front.pdf" target="_blank">Graduation Certificate</a>
-                </div>
-
-                <div class="portfolio">
-                    <h2>Portfolio</h2>
-                    <div class="portfolio-items">
-                        <a href="#" target="_blank">Project 1: Refinery Process Modeling</a>
-                        <a href="#" target="_blank">Project 2: Data Analysis Dashboard</a>
-                        <a href="#" target="_blank">Project 3: Python Script for Optimization</a>
-                    </div>
+            <h2>My Documents</h2>
+            <div class="docs-list">
+                <a href="Transcript English.pdf" target="_blank">Transcript English</a>
+                <a href="Combustion School 2020 Certificate-Ahmed Sabri.png" target="_blank">Combustion School 2020 Certificate</a>
+                <a href="Aspentech certificate for Ahmed Sabri.pdf" target="_blank">Aspentech Certificate</a>
+                <a href="Ahmed_sabri_English_garduation_Certificate_Back&Front.pdf" target="_blank">Graduation Certificate</a>
+            </div>
+            <div class="portfolio">
+                <h2>Portfolio</h2>
+                <div class="portfolio-items">
+                    <a href="#" target="_blank">Refinery Process Optimization Study</a>
+                    <a href="#" target="_blank">Data-Driven Process Efficiency Dashboard</a>
+                    <a href="#" target="_blank">Gasification Unit Performance Evaluation</a>
+                    <a href="#" target="_blank">Crude Unit Energy Integration Project</a>
                 </div>
             </div>
         </div>
         <div class="right">
-            <div class="about typing">
+            <div class="about-section typing">
                 <h2>About Me</h2>
-                <p>Welcome to my portfolio. I am a seasoned professional passionate about refinery processes, data analysis, and software development. I combine industry expertise with technical proficiency to deliver innovative solutions.</p>
+                <p>
+                    I am a seasoned Refinery Process Engineer with over 16 years of hands-on experience 
+                    in optimizing process units, enhancing energy efficiency, and driving operational 
+                    excellence. My career has been dedicated to refining hydrocarbons safely, efficiently, 
+                    and sustainably. Over the years, I've combined advanced engineering principles with 
+                    data-driven methodologies to deliver measurable improvements in product quality, 
+                    throughput, and cost savings.
+                </p>
+            </div>
+            
+            <div class="experience">
+                <h2>Experience & Achievements</h2>
+                <ul>
+                    <li>**Refinery Optimization**: Led major optimization initiatives in crude and vacuum 
+                        distillation units, resulting in a 10% increase in throughput and substantial cost reductions.</li>
+                    <li>**Energy Integration**: Implemented advanced heat integration studies and pinch analysis 
+                        techniques, cutting energy consumption by up to 15% in key process units.</li>
+                    <li>**Process Safety & Reliability**: Championed process safety improvements, reducing 
+                        downtime and enhancing system reliability through rigorous hazard analysis and proactive 
+                        maintenance strategies.</li>
+                    <li>**Technology Deployment**: Leveraged AspenTech and other advanced simulation tools to 
+                        identify bottlenecks, streamline operations, and inform critical decision-making.</li>
+                    <li>**Cross-Functional Leadership**: Collaborated with multidisciplinary teams including 
+                        operations, maintenance, and R&D to deliver innovative solutions that align with corporate 
+                        sustainability and profitability targets.</li>
+                    <li>**Continuous Improvement**: Drove continuous improvement programs, mentoring junior engineers, 
+                        and fostering a culture of operational excellence that delivered sustained performance gains.</li>
+                </ul>
             </div>
         </div>
     </div>
