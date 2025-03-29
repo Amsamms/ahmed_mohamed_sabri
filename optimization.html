@@ -36,6 +36,8 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: none;
         }
 
         .optimization-card:hover {
@@ -64,6 +66,26 @@
         .optimization-content {
             font-size: 1.1rem;
             line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .optimization-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .optimization-content ul li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .optimization-content ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
 
         .highlight-box {
@@ -105,17 +127,6 @@
             width: 100px;
             height: 3px;
             background: var(--accent-color);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -164,7 +175,7 @@
         <!-- Process Optimization -->
         <h2 class="category-title">Process Optimization Examples</h2>
         
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">Platformer Unit Capacity Optimization</h3>
             <div class="optimization-content">
                 <p>Successfully increased Platformer unit's throughput to 118% of its nameplate capacity through:</p>
@@ -176,7 +187,7 @@
             </div>
         </div>
 
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">Energy Management Program</h3>
             <div class="optimization-content">
                 <p>Led the implementation of an energy management program using Solomon's Energy Intensity Index (EII):</p>
@@ -192,7 +203,7 @@
         <!-- Troubleshooting -->
         <h2 class="category-title">Troubleshooting Successes</h2>
 
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">Penex Unit Catalyst Deactivation</h3>
             <div class="optimization-content">
                 <p>Resolved rapid de-activation issues in 2018 where temperature difference across the active bed was decreasing by 0.25°C per day:</p>
@@ -204,7 +215,7 @@
             </div>
         </div>
 
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">CCR Section Corrosion Resolution</h3>
             <div class="optimization-content">
                 <p>Addressed persistent corrosion issues in the vent gas wash tower system:</p>
@@ -219,7 +230,7 @@
         <!-- Cost Optimization -->
         <h2 class="category-title">Cost Optimization Initiatives</h2>
 
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">Nitrogen Usage Optimization</h3>
             <div class="optimization-content">
                 <p>Reduced nitrogen consumption during turnarounds by 50% through:</p>
@@ -231,7 +242,7 @@
             </div>
         </div>
 
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">Process Facility Change Proposal</h3>
             <div class="optimization-content">
                 <p>Introduced cost-saving process change in 2014:</p>
@@ -246,7 +257,7 @@
         <!-- Advanced Process Control -->
         <h2 class="category-title">Advanced Process Control Initiatives</h2>
 
-        <div class="optimization-card fade-in">
+        <div class="optimization-card">
             <h3 class="optimization-title">APC Implementation</h3>
             <div class="optimization-content">
                 <p>Led the evaluation and implementation of Advanced Process Control solutions:</p>
