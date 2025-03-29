@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Mohamed Sabri - Achievements</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievement-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .achievement-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .achievement-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-user-circle me-2"></i>
+                Ahmed Mohamed Sabri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="achievements.html">
+                            <i class="fas fa-trophy me-1"></i> Achievements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="certificates.html">
+                            <i class="fas fa-certificate me-1"></i> Certificates
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <h1 class="section-title">Professional Achievements</h1>
+
+        <!-- Technical Training Experience -->
+        <div class="achievement-card">
+            <h2 class="achievement-title">Technical Training Experience</h2>
+            <ul class="achievement-list">
+                <li>Provide training courses for younger process engineers (Operation, start up, shutdown, and troubleshooting)</li>
+                <li>Provide on-job training for operators about new modifications</li>
+                <li>Update operating manual sections (Process description, PFD, P&ID's)</li>
+                <li>Develop/Update detailed operating instructions and Operators training manual</li>
+                <li>Prepare Training plans for younger engineers</li>
+                <li>Provide training courses for process engineers about design simulation</li>
+            </ul>
+        </div>
+
+        <!-- Process Engineering Achievements -->
+        <div class="achievement-card">
+            <h2 class="achievement-title">Process Engineering Excellence</h2>
+            <div class="highlight-box">
+                <h3>Key Achievements</h3>
+                <ul class="achievement-list">
+                    <li>Successfully increased Platformer unit's throughput to 118% of nameplate capacity</li>
+                    <li>Developed simplified Excel-based tool for hydrogen and refinery mass balances</li>
+                    <li>Implemented energy management program using Solomon's Energy Intensity Index</li>
+                    <li>Identified and optimized 12 major energy consumers (50% of total consumption)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Project Management -->
+        <div class="achievement-card">
+            <h2 class="achievement-title">Major Projects</h2>
+            <h3 class="mb-4">Midor Refinery Expansion Project</h3>
+            <ul class="achievement-list">
+                <li>Increased Refinery capacity to 160%</li>
+                <li>Enhanced NHT capacity to 125%</li>
+                <li>Implemented new Penex unit train with common De-IsoPentanizer</li>
+                <li>Led process documentation and review for UOP and TPIT</li>
+            </ul>
+        </div>
+
+        <!-- AI and Innovation -->
+        <div class="achievement-card">
+            <h2 class="achievement-title">AI and Innovation</h2>
+            <ul class="achievement-list">
+                <li>Designed and implemented 'Refinery_expert' AI assistant</li>
+                <li>Developed specialized GPT-based solutions for process engineering</li>
+                <li>Created machine learning model for H₂ composition prediction</li>
+                <li>Implemented automated process instrumentation monitoring system</li>
+            </ul>
+        </div>
+
+        <!-- Problem Solving -->
+        <div class="achievement-card">
+            <h2 class="achievement-title">Notable Problem-Solving</h2>
+            <ul class="achievement-list">
+                <li>Restored Penex Unit Efficiency through catalyst optimization</li>
+                <li>Resolved persistent corrosion issues in CCR Section</li>
+                <li>Optimized Nitrogen Usage During Turnarounds (50% reduction)</li>
+                <li>Successfully executed Platformer Inert Start-Up (first in 20 years)</li>
+                <li>Introduced cost-saving process changes (saving $350 weekly)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <div class="social-links mb-3">
+                <a href="https://www.linkedin.com/in/ahmed-sabri-91097955/" class="text-white me-3" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/Amsamms" class="text-white me-3" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                <a href="mailto:Ahmedsabri1985@outlook.com" class="text-white"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="mb-1">Ahmed Mohamed Sabri</p>
+            <p class="mb-1">Senior Process Engineer at EPROM-MIDOR REFINERY</p>
+            <p class="mb-1">Alexandria, Egypt</p>
+            <p class="mb-1">Phone: +2 0101 993 4635</p>
+            <p class="mb-1">Email: Ahmedsabri1985@outlook.com</p>
+            <p class="mt-3">&copy; 2024 Ahmed Mohamed Sabri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

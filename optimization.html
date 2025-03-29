@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Mohamed Sabri - Optimization & Troubleshooting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --bg-color: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .optimization-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .optimization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .optimization-title {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .optimization-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .optimization-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-user-circle me-2"></i>
+                Ahmed Mohamed Sabri
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="achievements.html">
+                            <i class="fas fa-trophy me-1"></i> Achievements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="certificates.html">
+                            <i class="fas fa-certificate me-1"></i> Certificates
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="optimization.html">
+                            <i class="fas fa-cogs me-1"></i> Optimization
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <h1 class="section-title">Process Optimization & Troubleshooting</h1>
+
+        <!-- Process Optimization -->
+        <h2 class="category-title">Process Optimization Examples</h2>
+        
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">Platformer Unit Capacity Optimization</h3>
+            <div class="optimization-content">
+                <p>Successfully increased Platformer unit's throughput to 118% of its nameplate capacity through:</p>
+                <ul>
+                    <li>Identification and addressing of key bottlenecks in heaters, net gas compressors, and coolers</li>
+                    <li>Submission of detailed performance report to UOP for further optimization</li>
+                    <li>Implementation of comprehensive monitoring and control strategies</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">Energy Management Program</h3>
+            <div class="optimization-content">
+                <p>Led the implementation of an energy management program using Solomon's Energy Intensity Index (EII):</p>
+                <ul>
+                    <li>Development of daily monitoring spreadsheets for each refinery unit</li>
+                    <li>Implementation of effective benchmarking strategies</li>
+                    <li>Identification of 12 major energy consumers (50% of total consumption)</li>
+                    <li>Integration of real-time voltage and current readings with DCS for continuous monitoring</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <h2 class="category-title">Troubleshooting Successes</h2>
+
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">Penex Unit Catalyst Deactivation</h3>
+            <div class="optimization-content">
+                <p>Resolved rapid de-activation issues in 2018 where temperature difference across the active bed was decreasing by 0.25°C per day:</p>
+                <ul>
+                    <li>Identified NHT catalyst deactivation as the root cause</li>
+                    <li>Detected oxygenate slippage into penex liquid feed</li>
+                    <li>Implemented corrective measures to restore unit efficiency</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">CCR Section Corrosion Resolution</h3>
+            <div class="optimization-content">
+                <p>Addressed persistent corrosion issues in the vent gas wash tower system:</p>
+                <ul>
+                    <li>Identified improper mixing of vent gas and caustic as primary issue</li>
+                    <li>Discovered inadequate pipeline insulation problems</li>
+                    <li>Implemented comprehensive solution to prevent future corrosion</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Cost Optimization -->
+        <h2 class="category-title">Cost Optimization Initiatives</h2>
+
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">Nitrogen Usage Optimization</h3>
+            <div class="optimization-content">
+                <p>Reduced nitrogen consumption during turnarounds by 50% through:</p>
+                <ul>
+                    <li>Implementation of vacuum purging strategy (125 mm Hg absolute)</li>
+                    <li>Optimization of pressure breaking procedures</li>
+                    <li>Update of refinery procedures to reflect new best practices</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">Process Facility Change Proposal</h3>
+            <div class="optimization-content">
+                <p>Introduced cost-saving process change in 2014:</p>
+                <ul>
+                    <li>Rerouted penex driers knockout bleeder to closed drain</li>
+                    <li>Prevented 0.7 M³ weekly waste (0.5 ton)</li>
+                    <li>Achieved $350 weekly cost savings</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Advanced Process Control -->
+        <h2 class="category-title">Advanced Process Control Initiatives</h2>
+
+        <div class="optimization-card fade-in">
+            <h3 class="optimization-title">APC Implementation</h3>
+            <div class="optimization-content">
+                <p>Led the evaluation and implementation of Advanced Process Control solutions:</p>
+                <ul>
+                    <li>Presented compelling use cases to executive leadership</li>
+                    <li>Evaluated solutions from AspenTech, ABB, and AVEVA</li>
+                    <li>Positioned refinery for adoption of cutting-edge automation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <div class="social-links mb-3">
+                <a href="https://www.linkedin.com/in/ahmed-sabri-91097955/" class="text-white me-3" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/Amsamms" class="text-white me-3" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                <a href="mailto:Ahmedsabri1985@outlook.com" class="text-white"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="mb-1">Ahmed Mohamed Sabri</p>
+            <p class="mb-1">Senior Process Engineer at EPROM-MIDOR REFINERY</p>
+            <p class="mb-1">Alexandria, Egypt</p>
+            <p class="mb-1">Phone: +2 0101 993 4635</p>
+            <p class="mb-1">Email: Ahmedsabri1985@outlook.com</p>
+            <p class="mt-3">&copy; 2024 Ahmed Mohamed Sabri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
