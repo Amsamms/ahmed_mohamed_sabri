@@ -376,6 +376,22 @@ footer {
     transform: translateX(0);
 }
 
+/* ESE Section */
+.ese-info .lead {
+    color: var(--text-color);
+}
+
+.ese-info ul li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.ese-video-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;

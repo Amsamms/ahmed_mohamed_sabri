@@ -151,7 +151,7 @@ document.querySelectorAll('.btn-download').forEach(button => {
 
 // Typing effect for hero section
 const heroText = "Ahmed Mohamed Sabri";
-const heroSubtext = "Senior Process Engineer & AI Innovator";
+const heroSubtext = "Senior Process Engineer | 17+ Years | AI-Driven Engineering Solutions";
 let currentText = "";
 let currentSubtext = "";
 let i = 0;
