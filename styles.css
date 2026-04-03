@@ -319,12 +319,41 @@ footer {
     transform: translateY(-3px);
 }
 
-/* Responsive Design */
+/* Responsive Video Wrapper */
+.ese-video-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.ese-video-wrapper iframe {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Hero Buttons Wrapper */
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* CV Download Buttons Wrapper */
+.cv-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Responsive Design — Tablets */
 @media (max-width: 768px) {
     .hero-section {
         height: 70vh;
     }
-    
+
     .section {
         padding: 50px 0;
     }
@@ -339,6 +368,179 @@ footer {
 
     .section-title {
         font-size: 2rem;
+        margin-bottom: 35px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .web-apps-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .ese-video-wrapper {
+        aspect-ratio: 16 / 9;
+    }
+
+    .ese-video-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+/* Responsive Design — Phones */
+@media (max-width: 576px) {
+    .hero-section {
+        height: 60vh;
+    }
+
+    .hero-content {
+        width: 92%;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero-buttons .btn {
+        width: 80%;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        margin: 0 !important;
+    }
+
+    .section {
+        padding: 30px 0;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .section-title::after {
+        margin: 12px auto;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .skill-item {
+        padding: 1.2rem;
+    }
+
+    .skill-item i {
+        font-size: 2rem;
+    }
+
+    .skill-item h4 {
+        font-size: 1.1rem;
+    }
+
+    .web-apps-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .web-app-card {
+        padding: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .web-app-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .certificate-card img {
+        height: 150px;
+    }
+
+    .certificate-card .card-body {
+        padding: 1rem;
+    }
+
+    .ese-video-wrapper {
+        aspect-ratio: 16 / 9;
+    }
+
+    .ese-video-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .ese-info .lead {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .ese-info h5 {
+        font-size: 1.1rem;
+    }
+
+    .ese-info ul li {
+        font-size: 0.95rem;
+    }
+
+    .btn-download {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        min-height: 48px;
+    }
+
+    .cv-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cv-buttons .btn {
+        width: 80%;
+        margin: 0 !important;
+    }
+
+    .social-links a {
+        margin: 0 0.6rem;
+        font-size: 1.3rem;
+    }
+
+    footer {
+        padding: 2rem 0;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+
+    /* Swiper navigation arrows — hide on mobile, use swipe */
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
     }
 }
 
