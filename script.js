@@ -1,231 +1,295 @@
-// Initialize Swiper with enhanced effects
-const swiper = new Swiper('.swiper', {
-    loop: true,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
-    effect: 'fade',
-    fadeEffect: {
-        crossFade: true
-    },
-    speed: 1000,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    on: {
-        slideChange: function() {
-            const activeSlide = this.slides[this.activeIndex];
-            const img = activeSlide.querySelector('img');
-            img.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                img.style.transform = 'scale(1)';
-            }, 100);
-        }
+/* ============================================================
+   Ahmed Sabri, Portfolio interactions
+   Three.js particle hero + GSAP scroll motion + nav + counters
+   ============================================================ */
+(function () {
+    'use strict';
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const $  = (sel, ctx) => (ctx || document).querySelector(sel);
+    const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
+
+    /* ---------- Footer year ---------- */
+    const yearEl = $('#year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    /* ---------- Navigation: scrolled state, mobile menu ---------- */
+    const nav = $('#nav');
+    const navToggle = $('#navToggle');
+    const navLinksWrap = $('#navLinks');
+    const navLinks = $$('.nav__link');
+
+    function setScrolled() {
+        if (!nav) return;
+        nav.classList.toggle('is-scrolled', window.scrollY > 24);
     }
-});
+    setScrolled();
 
-// Enhanced Navbar scroll effect
-const navbar = document.querySelector('.navbar');
-let lastScroll = 0;
-let navbarTicking = false;
-
-window.addEventListener('scroll', () => {
-    if (!navbarTicking) {
-        window.requestAnimationFrame(() => {
-            const currentScroll = window.pageYOffset;
-            
-            // Add/remove scrolled class based on scroll position
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            // Hide/show navbar based on scroll direction
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
-            
-            lastScroll = currentScroll;
-            navbarTicking = false;
+    if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+            const open = nav.classList.toggle('is-open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
         });
-        navbarTicking = true;
     }
-});
+    // Close the mobile menu after picking a link
+    if (navLinksWrap) {
+        navLinksWrap.addEventListener('click', (e) => {
+            if (e.target.closest('a') && nav.classList.contains('is-open')) {
+                nav.classList.remove('is-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 
-// Enhanced Intersection Observer for scroll animations
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
+    /* ---------- Scroll progress bar ---------- */
+    const progress = $('.scroll-progress');
+    let ticking = false;
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            setScrolled();
+            if (progress) {
+                const h = document.documentElement;
+                const max = h.scrollHeight - h.clientHeight;
+                progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+            }
+            ticking = false;
+        });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Add staggered animation for child elements
-            const children = entry.target.querySelectorAll('.skill-item, .certificate-card, .web-app-card, .optimization-card');
-            children.forEach((child, index) => {
-                setTimeout(() => {
-                    child.classList.add('visible');
-                }, index * 100);
+    /* ---------- GSAP: reveals, counters, smooth anchor scroll, scrollspy ---------- */
+    const hasGSAP = typeof window.gsap !== 'undefined';
+    if (hasGSAP) {
+        const gsap = window.gsap;
+        if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
+        if (window.ScrollToPlugin) gsap.registerPlugin(window.ScrollToPlugin);
+
+        // Hero intro (runs regardless of motion pref, but instant if reduced)
+        const heroBits = $$('.hero .reveal');
+        if (prefersReduced) {
+            gsap.set(heroBits, { opacity: 1, y: 0 });
+        } else {
+            gsap.to(heroBits, {
+                opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+                stagger: 0.12, delay: 0.15
             });
         }
-    });
-}, observerOptions);
 
-// Observe all elements with animation classes
-document.querySelectorAll('.section-title, .certificate-card, .skill-item, .web-app-card, .optimization-card, .fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-    observer.observe(el);
-});
+        if (window.ScrollTrigger && !prefersReduced) {
+            // Scroll reveals
+            $$('.reveal-up').forEach((el) => {
+                gsap.to(el, {
+                    opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
+                    scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+                });
+            });
 
-// Enhanced Hero content animation
-const heroContent = document.querySelector('.hero-content');
-setTimeout(() => {
-    heroContent.classList.add('visible');
-}, 500);
-
-// Smooth scrolling with enhanced behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
+            // Animated counters
+            $$('.stat__num').forEach((el) => {
+                const target = parseFloat(el.dataset.count || '0');
+                const suffix = el.dataset.suffix || '';
+                const obj = { v: 0 };
+                window.ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 90%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(obj, {
+                            v: target, duration: 1.6, ease: 'power2.out',
+                            onUpdate: () => { el.textContent = Math.round(obj.v) + suffix; },
+                            onComplete: () => { el.textContent = target + suffix; }
+                        });
+                    }
+                });
+            });
+        } else {
+            // Reduced motion: just show everything, set final counter values
+            $$('.reveal-up').forEach((el) => el.classList.add('is-in'));
+            $$('.stat__num').forEach((el) => {
+                el.textContent = (el.dataset.count || '0') + (el.dataset.suffix || '');
             });
         }
-    });
-});
 
-// Enhanced Parallax effect for hero section
-let parallaxTicking = false;
-window.addEventListener('scroll', () => {
-    if (!parallaxTicking) {
-        window.requestAnimationFrame(() => {
-            const heroSection = document.querySelector('.hero-section');
-            const scrolled = window.pageYOffset;
-            heroSection.style.backgroundPositionY = -(scrolled * 0.5) + 'px';
-            parallaxTicking = false;
+        // Smooth anchor scroll with header offset
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 74;
+        $$('a[href^="#"]').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const id = link.getAttribute('href');
+                if (id === '#' || id.length < 2) return;
+                const target = document.querySelector(id);
+                if (!target) return;
+                e.preventDefault();
+                if (window.ScrollToPlugin && !prefersReduced) {
+                    gsap.to(window, {
+                        duration: 1, ease: 'power2.inOut',
+                        scrollTo: { y: target, offsetY: navH - 4 }
+                    });
+                } else {
+                    target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+                }
+            });
         });
-        parallaxTicking = true;
-    }
-});
 
-// Enhanced hover effects for skill items
-document.querySelectorAll('.skill-item, .optimization-card').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateY(-10px) scale(1.02)';
-        item.style.boxShadow = '0 8px 25px rgba(233, 69, 96, 0.2)';
-    });
-    
-    item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateY(0) scale(1)';
-        item.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-    });
-});
-
-// Enhanced loading animation for download buttons
-document.querySelectorAll('.btn-download').forEach(button => {
-    button.addEventListener('click', function(e) {
-        this.classList.add('loading');
-        setTimeout(() => {
-            this.classList.remove('loading');
-        }, 1000);
-    });
-});
-
-// Typing effect for hero section
-const heroText = "Ahmed Mohamed Sabri";
-const heroSubtext = "Senior Process Engineer | 17+ Years | AI-Driven Engineering Solutions";
-let currentText = "";
-let currentSubtext = "";
-let i = 0;
-let j = 0;
-
-function typeWriter() {
-    if (i < heroText.length) {
-        currentText += heroText.charAt(i);
-        document.querySelector('.hero-content h1').innerHTML = currentText + '<span class="cursor"></span>';
-        i++;
-        setTimeout(typeWriter, 100);
+        // Scroll spy: highlight active nav link
+        if (window.ScrollTrigger) {
+            const sections = navLinks
+                .map((l) => document.querySelector(l.getAttribute('href')))
+                .filter(Boolean);
+            sections.forEach((section) => {
+                window.ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top 45%',
+                    end: 'bottom 45%',
+                    onToggle: (self) => {
+                        if (self.isActive) {
+                            navLinks.forEach((l) => {
+                                l.classList.toggle('is-active', l.getAttribute('href') === '#' + section.id);
+                            });
+                        }
+                    }
+                });
+            });
+        }
     } else {
-        setTimeout(subTextWriter, 500);
-    }
-}
-
-function subTextWriter() {
-    if (j < heroSubtext.length) {
-        currentSubtext += heroSubtext.charAt(j);
-        document.querySelector('.hero-content p').innerHTML = currentSubtext + '<span class="cursor"></span>';
-        j++;
-        setTimeout(subTextWriter, 50);
-    }
-}
-
-// Initialize typing effect
-document.addEventListener('DOMContentLoaded', typeWriter);
-
-// Enhanced scroll progress indicator
-const progressBar = document.createElement('div');
-progressBar.className = 'scroll-progress';
-document.body.appendChild(progressBar);
-
-let progressTicking = false;
-window.addEventListener('scroll', () => {
-    if (!progressTicking) {
-        window.requestAnimationFrame(() => {
-            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / windowHeight) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressTicking = false;
+        // No GSAP at all: reveal everything and fill counters
+        $$('.reveal, .reveal-up').forEach((el) => { el.style.opacity = 1; el.style.transform = 'none'; });
+        $$('.stat__num').forEach((el) => {
+            el.textContent = (el.dataset.count || '0') + (el.dataset.suffix || '');
         });
-        progressTicking = true;
     }
-});
 
-// Add particle effect to hero section
-const createParticles = () => {
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            particle.style.animationDelay = Math.random() * 2 + 's';
-            heroSection.appendChild(particle);
+    /* ---------- Three.js particle hero ---------- */
+    function initHero() {
+        const canvas = $('#heroCanvas');
+        if (!canvas || typeof window.THREE === 'undefined') return;
+
+        const THREE = window.THREE;
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        } catch (err) {
+            return; // WebGL unavailable; the CSS gradient backdrop remains
+        }
+
+        const hero = $('.hero');
+        const getSize = () => ({
+            w: hero ? hero.clientWidth : window.innerWidth,
+            h: hero ? hero.clientHeight : window.innerHeight
+        });
+
+        let { w, h } = getSize();
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(w, h, false);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 200);
+        camera.position.z = 38;
+
+        // ---- Sparse, dim point field (no glow, no sparkle) ----
+        const COUNT = window.innerWidth < 768 ? 600 : 1100;
+        const positions = new Float32Array(COUNT * 3);
+        const R = 30;
+
+        for (let i = 0; i < COUNT; i++) {
+            // random point inside a sphere (cube-root for even volume distribution)
+            const r = R * Math.cbrt(Math.random());
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+            positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+            positions[i * 3 + 2] = r * Math.cos(phi);
+        }
+
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        // Flat-lit, muted points (normal blending) so they never glow
+        const mat = new THREE.PointsMaterial({
+            size: 0.12,
+            color: 0x8294b2,
+            transparent: true,
+            opacity: 0.38,
+            depthWrite: false,
+            sizeAttenuation: true
+        });
+        const points = new THREE.Points(geo, mat);
+        scene.add(points);
+
+        // ---- Faint wireframe lattice for quiet, technical depth ----
+        const wire = new THREE.Group();
+        const wireInner = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(13, 1),
+            new THREE.MeshBasicMaterial({ color: 0x6f86a8, wireframe: true, transparent: true, opacity: 0.10 })
+        );
+        const wireOuter = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(21, 1),
+            new THREE.MeshBasicMaterial({ color: 0x6f86a8, wireframe: true, transparent: true, opacity: 0.05 })
+        );
+        wire.add(wireInner, wireOuter);
+        scene.add(wire);
+
+        // ---- Mouse parallax ----
+        const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+        if (!('ontouchstart' in window)) {
+            window.addEventListener('mousemove', (e) => {
+                mouse.tx = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouse.ty = (e.clientY / window.innerHeight - 0.5) * 2;
+            }, { passive: true });
+        }
+
+        // ---- Resize ----
+        function resize() {
+            const s = getSize();
+            w = s.w; h = s.h;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h, false);
+        }
+        window.addEventListener('resize', resize, { passive: true });
+
+        // ---- Render loop (pauses when tab hidden) ----
+        let raf = null;
+        let t = 0;
+        function render() {
+            t += 0.0012;
+            mouse.x += (mouse.tx - mouse.x) * 0.035;
+            mouse.y += (mouse.ty - mouse.y) * 0.035;
+
+            points.rotation.y = t * 0.18;
+            points.rotation.x = t * 0.06;
+            wire.rotation.y = -t * 0.13;
+            wireInner.rotation.y = t * 0.09;
+
+            camera.position.x += (mouse.x * 3.5 - camera.position.x) * 0.05;
+            camera.position.y += (-mouse.y * 3.5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+            raf = requestAnimationFrame(render);
+        }
+
+        function start() { if (!raf) raf = requestAnimationFrame(render); }
+        function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stop(); else if (!prefersReduced) start();
+        });
+
+        if (prefersReduced) {
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera); // single static frame
+        } else {
+            start();
         }
     }
-};
 
-createParticles();
-
-// Add mouse move effect to hero section
-const heroSection = document.querySelector('.hero-section');
-if (heroSection) {
-    heroSection.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const { left, top, width, height } = heroSection.getBoundingClientRect();
-        const x = (clientX - left) / width;
-        const y = (clientY - top) / height;
-        
-        heroSection.style.setProperty('--mouse-x', x);
-        heroSection.style.setProperty('--mouse-y', y);
-    });
-} 
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHero);
+    } else {
+        initHero();
+    }
+})();
